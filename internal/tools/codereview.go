@@ -3,7 +3,7 @@ package tools
 import (
 	"fmt"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // GenerateCodeReviewPrompt generates a structured code review prompt with comprehensive metadata

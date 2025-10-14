@@ -7,7 +7,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // MemoryStore implements Store interface using in-memory storage

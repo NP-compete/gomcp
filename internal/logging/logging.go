@@ -6,7 +6,7 @@ import (
 	"time"
 
 	mcp "github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // LogLevel represents the severity of a log message

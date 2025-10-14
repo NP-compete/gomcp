@@ -7,7 +7,7 @@ import (
 
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // Service provides PostgreSQL storage functionality

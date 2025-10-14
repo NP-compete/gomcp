@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
-	"github.com/redhat-data-and-ai/gomcp/internal/oauth"
-	"github.com/redhat-data-and-ai/gomcp/internal/storage"
+	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/oauth"
+	"github.com/NP-compete/gomcp/internal/storage"
 )
 
 type contextKey string

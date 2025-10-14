@@ -5,8 +5,8 @@ import (
 	"fmt"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/completion"
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/completion"
+	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // MultiplyInput defines the input schema for multiply_numbers tool

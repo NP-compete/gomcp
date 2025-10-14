@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
-	"github.com/redhat-data-and-ai/gomcp/internal/storage"
+	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/storage"
 )
 
 // Service manages OAuth 2.0 operations with dependency injection

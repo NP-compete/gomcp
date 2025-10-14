@@ -6,12 +6,12 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	chimiddleware "github.com/go-chi/chi/v5/middleware"
-	"github.com/redhat-data-and-ai/gomcp/internal/config"
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
-	"github.com/redhat-data-and-ai/gomcp/internal/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/middleware"
-	"github.com/redhat-data-and-ai/gomcp/internal/oauth"
-	"github.com/redhat-data-and-ai/gomcp/internal/storage"
+	"github.com/NP-compete/gomcp/internal/config"
+	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/mcp"
+	"github.com/NP-compete/gomcp/internal/middleware"
+	"github.com/NP-compete/gomcp/internal/oauth"
+	"github.com/NP-compete/gomcp/internal/storage"
 )
 
 // StorageService is an alias for storage.Service (PostgreSQL)

@@ -10,13 +10,13 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/NP-compete/gomcp/internal/api"
+	"github.com/NP-compete/gomcp/internal/config"
+	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/mcp"
+	"github.com/NP-compete/gomcp/internal/oauth"
+	"github.com/NP-compete/gomcp/internal/version"
 	mcpSdk "github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/api"
-	"github.com/redhat-data-and-ai/gomcp/internal/config"
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
-	"github.com/redhat-data-and-ai/gomcp/internal/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/oauth"
-	"github.com/redhat-data-and-ai/gomcp/internal/version"
 )
 
 func main() {

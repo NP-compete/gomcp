@@ -8,15 +8,15 @@ import (
 
 var (
 	// Version is the application version
-	// Set via ldflags: -X github.com/redhat-data-and-ai/gomcp/internal/version.Version=x.y.z
+	// Set via ldflags: -X github.com/NP-compete/gomcp/internal/version.Version=x.y.z
 	Version = "dev"
 
 	// GitCommit is the git commit hash
-	// Set via ldflags: -X github.com/redhat-data-and-ai/gomcp/internal/version.GitCommit=$(git rev-parse HEAD)
+	// Set via ldflags: -X github.com/NP-compete/gomcp/internal/version.GitCommit=$(git rev-parse HEAD)
 	GitCommit = "unknown"
 
 	// BuildTime is when the binary was built
-	// Set via ldflags: -X github.com/redhat-data-and-ai/gomcp/internal/version.BuildTime=$(date -u '+%Y-%m-%d_%H:%M:%S')
+	// Set via ldflags: -X github.com/NP-compete/gomcp/internal/version.BuildTime=$(date -u '+%Y-%m-%d_%H:%M:%S')
 	BuildTime = "unknown"
 
 	// GoVersion is the Go version used to build

@@ -3,7 +3,7 @@ package tools
 import (
 	"fmt"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // MultiplyNumbers multiplies two numbers with comprehensive tool metadata

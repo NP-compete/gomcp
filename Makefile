@@ -11,9 +11,9 @@ VERSION ?= $(shell cat VERSION 2>/dev/null || echo "dev")
 GIT_COMMIT ?= $(shell git rev-parse HEAD 2>/dev/null || echo "unknown")
 BUILD_TIME ?= $(shell date -u '+%Y-%m-%d_%H:%M:%S')
 LDFLAGS=-ldflags "\
-	-X github.com/redhat-data-and-ai/gomcp/internal/version.Version=$(VERSION) \
-	-X github.com/redhat-data-and-ai/gomcp/internal/version.GitCommit=$(GIT_COMMIT) \
-	-X github.com/redhat-data-and-ai/gomcp/internal/version.BuildTime=$(BUILD_TIME)"
+	-X github.com/NP-compete/gomcp/internal/version.Version=$(VERSION) \
+	-X github.com/NP-compete/gomcp/internal/version.GitCommit=$(GIT_COMMIT) \
+	-X github.com/NP-compete/gomcp/internal/version.BuildTime=$(BUILD_TIME)"
 
 # Build the application (development)
 build:

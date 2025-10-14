@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // responseWriter wraps http.ResponseWriter to capture status code

@@ -6,7 +6,7 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/version"
+	"github.com/NP-compete/gomcp/internal/version"
 )
 
 // Metrics represents application metrics

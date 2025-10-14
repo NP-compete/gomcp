@@ -10,16 +10,16 @@ import (
 	"sync"
 	"time"
 
+	"github.com/NP-compete/gomcp/internal/config"
+	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/mcp"
+	"github.com/NP-compete/gomcp/internal/oauth"
+	"github.com/NP-compete/gomcp/internal/pagination"
+	"github.com/NP-compete/gomcp/internal/prompts"
+	"github.com/NP-compete/gomcp/internal/resources"
+	"github.com/NP-compete/gomcp/internal/roots"
+	"github.com/NP-compete/gomcp/internal/storage"
 	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/config"
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
-	"github.com/redhat-data-and-ai/gomcp/internal/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/oauth"
-	"github.com/redhat-data-and-ai/gomcp/internal/pagination"
-	"github.com/redhat-data-and-ai/gomcp/internal/prompts"
-	"github.com/redhat-data-and-ai/gomcp/internal/resources"
-	"github.com/redhat-data-and-ai/gomcp/internal/roots"
-	"github.com/redhat-data-and-ai/gomcp/internal/storage"
 )
 
 // Server represents the API server

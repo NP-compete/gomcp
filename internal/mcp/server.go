@@ -1,9 +1,9 @@
 package mcp
 
 import (
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
-	"github.com/redhat-data-and-ai/gomcp/internal/tools"
-	"github.com/redhat-data-and-ai/gomcp/pkg/mcpprotocol"
+	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/tools"
+	"github.com/NP-compete/gomcp/pkg/mcpprotocol"
 )
 
 // Server is the main MCP server implementation

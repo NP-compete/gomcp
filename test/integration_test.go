@@ -8,9 +8,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/redhat-data-and-ai/gomcp/internal/api"
-	"github.com/redhat-data-and-ai/gomcp/internal/config"
-	"github.com/redhat-data-and-ai/gomcp/internal/mcp"
+	"github.com/NP-compete/gomcp/internal/api"
+	"github.com/NP-compete/gomcp/internal/config"
+	"github.com/NP-compete/gomcp/internal/mcp"
 )
 
 // Test server setup

@@ -4,10 +4,10 @@ import (
 	"context"
 
 	"github.com/modelcontextprotocol/go-sdk/mcp"
-	"github.com/redhat-data-and-ai/gomcp/internal/logger"
-	"github.com/redhat-data-and-ai/gomcp/internal/prompts"
-	"github.com/redhat-data-and-ai/gomcp/internal/resources"
-	"github.com/redhat-data-and-ai/gomcp/internal/tools"
+	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/NP-compete/gomcp/internal/prompts"
+	"github.com/NP-compete/gomcp/internal/resources"
+	"github.com/NP-compete/gomcp/internal/tools"
 )
 
 // ServerSDK wraps the official MCP SDK server
