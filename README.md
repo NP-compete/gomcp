@@ -42,7 +42,7 @@ source ~/.zshrc
 ### 1. Clone & Install
 
 ```bash
-git clone <your-repo>
+git clone https://github.com/NP-compete/gomcp.git
 cd gomcp
 go mod download
 ```
