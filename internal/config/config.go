@@ -109,8 +109,8 @@ func setDefaults(v *viper.Viper) {
 
 	// OAuth defaults
 	v.SetDefault("USE_EXTERNAL_BROWSER_AUTH", false)
-	v.SetDefault("COMPATIBLE_WITH_CURSOR", false)
-	v.SetDefault("CURSOR_COMPATIBLE_SSE", false)
+	v.SetDefault("COMPATIBLE_WITH_CURSOR", true)
+	v.SetDefault("CURSOR_COMPATIBLE_SSE", true)
 	v.SetDefault("ENABLE_AUTH", true)
 
 	// PostgreSQL defaults

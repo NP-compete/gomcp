@@ -124,7 +124,7 @@ make run
 |----------|---------|-------------|
 | `MCP_TRANSPORT_PROTOCOL` | `http` | Transport: `stdio`, `http`, `sse` |
 | `MCP_PORT` | `8081` | Server port |
-| `CURSOR_COMPATIBLE_SSE` | `false` | Enable Cursor compatibility |
+| `CURSOR_COMPATIBLE_SSE` | `true` | Enable Cursor compatibility |
 | `ENABLE_AUTH` | `true` | Enable OAuth authentication |
 | `LOG_LEVEL` | `INFO` | Log level |
 
@@ -317,9 +317,9 @@ lsof -ti:8081 | xargs kill -9
 ```
 
 **Cursor not connecting:**
-1. Set `CURSOR_COMPATIBLE_SSE=true`
-2. Use `make cursor`
-3. Verify `~/.cursor/mcp.json` has correct URL
+1. Use `make cursor` (Cursor compatibility is enabled by default)
+2. Verify `~/.cursor/mcp.json` has correct URL: `http://localhost:8081/mcp/sse`
+3. Restart Cursor IDE
 
 **Claude Desktop not working:**
 1. Set `MCP_TRANSPORT_PROTOCOL=stdio`
