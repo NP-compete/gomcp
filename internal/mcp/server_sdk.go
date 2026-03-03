@@ -3,11 +3,11 @@ package mcp
 import (
 	"context"
 
-	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/NP-compete/gomcp/internal/logger"
 	"github.com/NP-compete/gomcp/internal/prompts"
 	"github.com/NP-compete/gomcp/internal/resources"
 	"github.com/NP-compete/gomcp/internal/tools"
+	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // ServerSDK wraps the official MCP SDK server

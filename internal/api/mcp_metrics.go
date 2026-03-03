@@ -27,17 +27,17 @@ type mcpMetricsInternal struct {
 
 // EndpointMetrics tracks metrics for a specific endpoint
 type EndpointMetrics struct {
-	TotalRequests    int64                  `json:"total_requests"`
-	ToolCalls        int64                  `json:"tool_calls"`
-	ToolsListCalls   int64                  `json:"tools_list_calls"`
-	InitializeCalls  int64                  `json:"initialize_calls"`
-	Errors           int64                  `json:"errors"`
-	LastRequestTime  time.Time              `json:"last_request_time"`
-	FirstRequestTime time.Time              `json:"first_request_time"`
-	ClientUserAgents map[string]int64       `json:"client_user_agents"` // User-Agent -> count
-	ClientIPs        map[string]int64       `json:"client_ips"`         // IP -> count
-	AvgResponseTime  float64                `json:"avg_response_time_ms"`
-	TotalResponseTime float64               `json:"total_response_time_ms"`
+	TotalRequests     int64            `json:"total_requests"`
+	ToolCalls         int64            `json:"tool_calls"`
+	ToolsListCalls    int64            `json:"tools_list_calls"`
+	InitializeCalls   int64            `json:"initialize_calls"`
+	Errors            int64            `json:"errors"`
+	LastRequestTime   time.Time        `json:"last_request_time"`
+	FirstRequestTime  time.Time        `json:"first_request_time"`
+	ClientUserAgents  map[string]int64 `json:"client_user_agents"` // User-Agent -> count
+	ClientIPs         map[string]int64 `json:"client_ips"`         // IP -> count
+	AvgResponseTime   float64          `json:"avg_response_time_ms"`
+	TotalResponseTime float64          `json:"total_response_time_ms"`
 }
 
 // ToolMetrics tracks per-tool usage across both endpoints
@@ -255,4 +255,3 @@ func ResetMCPMetrics() {
 	mcpMetrics.metrics.ToolCalls = make(map[string]*ToolMetrics)
 	mcpMetrics.metrics.LastReset = time.Now()
 }
-

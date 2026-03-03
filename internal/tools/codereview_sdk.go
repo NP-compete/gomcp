@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // CodeReviewInput defines the input schema for generate_code_review_prompt tool

@@ -1,0 +1,19 @@
+run:
+  timeout: 5m
+  modules-download-mode: readonly
+
+linters:
+  disable:
+    - errcheck
+
+linters-settings:
+  govet:
+    enable-all: true
+    disable:
+      - fieldalignment
+      - shadow
+      - unusedwrite
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0

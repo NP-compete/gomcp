@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	mcp "github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/NP-compete/gomcp/internal/logger"
+	mcp "github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // CreateMessageSampling handles sampling requests from the server to the client
@@ -16,15 +16,14 @@ func CreateMessageSampling(
 	messages []*mcp.SamplingMessage,
 	modelPreferences *mcp.ModelPreferences,
 	systemPrompt string,
-	maxTokens int,
+	maxTokens int64,
 ) (*mcp.CreateMessageResult, error) {
 
 	if session == nil {
 		return nil, fmt.Errorf("session is nil - cannot send sampling request")
 	}
 
-	// Build sampling request
-	params := &mcp.CreateMessageRequestParams{
+	params := &mcp.CreateMessageParams{
 		Messages:  messages,
 		MaxTokens: maxTokens,
 	}
@@ -39,34 +38,26 @@ func CreateMessageSampling(
 
 	logger.Info(fmt.Sprintf("Sending sampling request to client (maxTokens=%d)", maxTokens))
 
-	// Send sampling request to client
-	result, err := session.CreateMessage(ctx, &mcp.CreateMessageRequest{
-		Params: *params,
-	})
+	result, err := session.CreateMessage(ctx, params)
 
 	if err != nil {
 		logger.Error(fmt.Sprintf("Sampling request failed: %v", err))
 		return nil, err
 	}
 
-	logger.Info(fmt.Sprintf("Sampling response received: %d messages", len(result.Content)))
+	logger.Info("Sampling response received")
 	return result, nil
 }
 
 // ExampleSamplingUsage demonstrates how to use sampling in a tool
 func ExampleSamplingUsage(ctx context.Context, session *mcp.ServerSession, userQuery string) (string, error) {
-	// Build messages for the LLM
 	messages := []*mcp.SamplingMessage{
 		{
-			Role: mcp.RoleUser,
-			Content: mcp.TextContent{
-				Type: "text",
-				Text: userQuery,
-			},
+			Role:    mcp.Role("user"),
+			Content: &mcp.TextContent{Text: userQuery},
 		},
 	}
 
-	// Optional: Specify model preferences
 	modelPrefs := &mcp.ModelPreferences{
 		Hints: []*mcp.ModelHint{
 			{
@@ -78,23 +69,21 @@ func ExampleSamplingUsage(ctx context.Context, session *mcp.ServerSession, userQ
 		IntelligencePriority: 0.8,
 	}
 
-	// Request sampling
 	result, err := CreateMessageSampling(
 		ctx,
 		session,
 		messages,
 		modelPrefs,
 		"You are a helpful assistant.",
-		1000, // max tokens
+		1000,
 	)
 
 	if err != nil {
 		return "", err
 	}
 
-	// Extract text from response
-	if len(result.Content) > 0 {
-		if textContent, ok := result.Content[0].(mcp.TextContent); ok {
+	if result.Content != nil {
+		if textContent, ok := result.Content.(*mcp.TextContent); ok {
 			return textContent.Text, nil
 		}
 	}

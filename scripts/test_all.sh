@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🧪 MCP 2025-06-18 Test Suite"
+echo "MCP 2025-06-18 Test Suite"
 echo "=============================="
 echo ""
 
@@ -30,17 +30,17 @@ run_test() {
     echo -e "${YELLOW}Testing:${NC} $description"
     
     if go test -v "./$package" 2>&1 | tee /tmp/test_output.log; then
-        echo -e "${GREEN}✓ PASSED${NC}: $description"
+        echo -e "${GREEN}PASSED${NC}: $description"
         TESTS_PASSED=$((TESTS_PASSED + 1))
     else
-        echo -e "${RED}✗ FAILED${NC}: $description"
+        echo -e "${RED}FAILED${NC}: $description"
         TESTS_FAILED=$((TESTS_FAILED + 1))
         cat /tmp/test_output.log
     fi
     echo ""
 }
 
-echo "📦 Unit Tests"
+echo "Unit Tests"
 echo "-------------"
 echo ""
 
@@ -48,7 +48,7 @@ echo ""
 run_test "internal/completion" "Completion (Structured Outputs)"
 
 # Logging tests
-run_test "internal/logging" "Logging (Server→Client Notifications)"
+run_test "internal/logging" "Logging (Server to Client Notifications)"
 
 # Pagination tests
 run_test "internal/pagination" "Pagination (Cursor-Based)"
@@ -57,7 +57,7 @@ run_test "internal/pagination" "Pagination (Cursor-Based)"
 run_test "internal/roots" "Roots (Filesystem Boundaries)"
 
 echo ""
-echo "🔗 Integration Tests"
+echo "Integration Tests"
 echo "-------------------"
 echo ""
 
@@ -65,7 +65,7 @@ echo ""
 run_test "test" "Full MCP Protocol Integration"
 
 echo ""
-echo "📊 Test Summary"
+echo "Test Summary"
 echo "==============="
 echo ""
 
@@ -77,7 +77,7 @@ echo -e "${RED}Failed: $TESTS_FAILED${NC}"
 echo ""
 
 # Coverage report
-echo "📈 Generating Coverage Report"
+echo "Generating Coverage Report"
 echo "=============================="
 echo ""
 
@@ -89,10 +89,9 @@ echo ""
 
 # Exit with error if any tests failed
 if [ $TESTS_FAILED -gt 0 ]; then
-    echo -e "${RED}❌ Some tests failed!${NC}"
+    echo -e "${RED}Some tests failed!${NC}"
     exit 1
 else
-    echo -e "${GREEN}✅ All tests passed!${NC}"
+    echo -e "${GREEN}All tests passed!${NC}"
     exit 0
 fi
-

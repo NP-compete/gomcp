@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question / Discussion
+    url: https://github.com/NP-compete/gomcp/discussions
+    about: Ask questions and discuss ideas in GitHub Discussions
+  - name: MCP Specification
+    url: https://modelcontextprotocol.io/specification/2025-06-18
+    about: Reference the official MCP specification
+  - name: Official Go SDK
+    url: https://github.com/modelcontextprotocol/go-sdk
+    about: Check the official MCP Go SDK documentation

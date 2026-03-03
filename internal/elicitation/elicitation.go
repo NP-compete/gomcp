@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	mcp "github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/NP-compete/gomcp/internal/logger"
+	mcp "github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // ResponseAction represents the user's response to an elicitation request

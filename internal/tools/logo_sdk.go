@@ -7,8 +7,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // LogoInput defines the input schema for get_redhat_logo tool (no parameters)

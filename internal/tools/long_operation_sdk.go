@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/NP-compete/gomcp/internal/logger"
+	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // LongOperationInput defines the input schema for long_operation tool

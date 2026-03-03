@@ -4,14 +4,14 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/go-chi/chi/v5"
-	chimiddleware "github.com/go-chi/chi/v5/middleware"
 	"github.com/NP-compete/gomcp/internal/config"
 	"github.com/NP-compete/gomcp/internal/logger"
 	"github.com/NP-compete/gomcp/internal/mcp"
 	"github.com/NP-compete/gomcp/internal/middleware"
 	"github.com/NP-compete/gomcp/internal/oauth"
 	"github.com/NP-compete/gomcp/internal/storage"
+	"github.com/go-chi/chi/v5"
+	chimiddleware "github.com/go-chi/chi/v5/middleware"
 )
 
 // StorageService is an alias for storage.Service (PostgreSQL)

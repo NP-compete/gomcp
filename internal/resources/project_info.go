@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"runtime"
 
-	"github.com/modelcontextprotocol/go-sdk/mcp"
 	"github.com/NP-compete/gomcp/internal/version"
+	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
 // GetProjectInfo returns information about the gomcp server

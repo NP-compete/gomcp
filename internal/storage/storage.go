@@ -5,9 +5,9 @@ import (
 	"encoding/json"
 	"fmt"
 
+	"github.com/NP-compete/gomcp/internal/logger"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/NP-compete/gomcp/internal/logger"
 )
 
 // Service provides PostgreSQL storage functionality
