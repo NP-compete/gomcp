@@ -73,7 +73,11 @@ lint:
 # Build Docker image
 docker-build:
 	@echo "Building Docker image..."
-	@docker build -t $(DOCKER_IMAGE):$(DOCKER_TAG) .
+	@docker build \
+		--build-arg VERSION=$(VERSION) \
+		--build-arg GIT_COMMIT=$(GIT_COMMIT) \
+		--build-arg BUILD_TIME="$(BUILD_TIME)" \
+		-t $(DOCKER_IMAGE):$(DOCKER_TAG) .
 
 # Run Docker container
 docker-run: docker-build
