@@ -10,6 +10,7 @@ import (
 
 	"github.com/NP-compete/gomcp/internal/api"
 	"github.com/NP-compete/gomcp/internal/config"
+	"github.com/NP-compete/gomcp/internal/constants"
 	"github.com/NP-compete/gomcp/internal/mcp"
 )
 
@@ -123,7 +124,7 @@ func TestInitialize(t *testing.T) {
 		t.Error("Expected pagination.support to be true")
 	}
 
-	if pag["maxPageSize"] != float64(100) {
+	if pag["maxPageSize"] != float64(constants.MaxPageSize) {
 		t.Errorf("Expected pagination.maxPageSize to be 100, got %v", pag["maxPageSize"])
 	}
 
