@@ -41,16 +41,10 @@ func LogToClient(ctx context.Context, session *mcp.ServerSession, level LogLevel
 		return nil
 	}
 
-	_ = LogMessage{
-		Level:     level,
-		Logger:    "gomcp-server",
-		Data:      data,
-		Timestamp: time.Now().UTC(),
-	}
-
 	// Note: The official SDK may not have direct logging notification support yet
 	// This is a placeholder for the proper implementation
 	// In production, this would call: session.SendNotification(ctx, "notifications/message", logMsg)
+	// with a LogMessage struct containing level, logger, data, and timestamp
 
 	// For now, log to server logs as fallback
 	logger.Info(fmt.Sprintf("[CLIENT LOG %s] %s: %v", level, message, data))
