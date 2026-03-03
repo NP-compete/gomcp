@@ -2,9 +2,9 @@ package api
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/NP-compete/gomcp/internal/config"
+	"github.com/NP-compete/gomcp/internal/constants"
 	"github.com/NP-compete/gomcp/internal/logger"
 	"github.com/NP-compete/gomcp/internal/mcp"
 	"github.com/NP-compete/gomcp/internal/middleware"
@@ -38,8 +38,8 @@ func NewRouter(cfg *config.Config, mcpServer *mcp.Server, oauthService *oauth.Se
 	r.Use(chimiddleware.RealIP)                    // Get real IP
 	r.Use(middleware.Recovery(*log))               // Recover from panics with logging
 	r.Use(middleware.LoggingMiddleware)            // Log all requests
-	r.Use(chimiddleware.Compress(5))               // Compress responses
-	r.Use(chimiddleware.Timeout(60 * time.Second)) // Request timeout
+	r.Use(chimiddleware.Compress(constants.DefaultCompressionLevel))               // Compress responses
+	r.Use(chimiddleware.Timeout(constants.DefaultRequestTimeout)) // Request timeout
 
 	// Apply session middleware
 	sessionSecret := cfg.GetSessionSecret()

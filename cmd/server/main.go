@@ -11,6 +11,7 @@ import (
 	"time"
 
 	"github.com/NP-compete/gomcp/internal/api"
+	"github.com/NP-compete/gomcp/internal/constants"
 	"github.com/NP-compete/gomcp/internal/config"
 	"github.com/NP-compete/gomcp/internal/logger"
 	"github.com/NP-compete/gomcp/internal/mcp"
@@ -111,9 +112,9 @@ func runHTTPTransport(cfg *config.Config) {
 	srv := &http.Server{
 		Addr:         addr,
 		Handler:      router,
-		ReadTimeout:  30 * time.Second,
-		WriteTimeout: 30 * time.Second,
-		IdleTimeout:  120 * time.Second,
+		ReadTimeout:  constants.DefaultReadTimeout,
+		WriteTimeout: constants.DefaultWriteTimeout,
+		IdleTimeout:  constants.DefaultIdleTimeout,
 	}
 
 	// Start server in a goroutine

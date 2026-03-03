@@ -7,6 +7,16 @@ RUN apk add --no-cache git ca-certificates
 # Set working directory
 WORKDIR /app
 
+# Build arguments with defaults
+ARG VERSION=dev
+ARG GIT_COMMIT=unknown
+ARG BUILD_TIME=unknown
+
+# Set version variables
+ENV VERSION=${VERSION}
+ENV GIT_COMMIT=${GIT_COMMIT}
+ENV BUILD_TIME=${BUILD_TIME}
+
 # Copy go mod files
 COPY go.mod go.sum ./
 
@@ -16,8 +26,13 @@ RUN go mod download
 # Copy source code
 COPY . .
 
-# Build the application
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /app/bin/gomcp ./cmd/server
+# Build the application with version info
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build \
+    -ldflags "-X github.com/NP-compete/gomcp/internal/version.Version=${VERSION} \
+              -X github.com/NP-compete/gomcp/internal/version.GitCommit=${GIT_COMMIT} \
+              -X github.com/NP-compete/gomcp/internal/version.BuildTime=${BUILD_TIME}" \
+    -trimpath \
+    -o /app/bin/gomcp ./cmd/server
 
 # Final stage
 FROM alpine:latest
@@ -46,4 +61,3 @@ EXPOSE 8080
 
 # Set entrypoint
 ENTRYPOINT ["/app/gomcp"]
-
