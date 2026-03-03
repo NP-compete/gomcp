@@ -153,8 +153,8 @@ func registerPromptsSDK(server *mcp.Server) {
 				if lang, ok := req.Params.Arguments["language"]; ok {
 					args.Language = lang
 				}
-				if context, ok := req.Params.Arguments["context"]; ok {
-					args.Context = context
+				if ctxArg, ok := req.Params.Arguments["context"]; ok {
+					args.Context = ctxArg
 				}
 			}
 			return prompts.GetDebugHelpPrompt(ctx, req, args)
