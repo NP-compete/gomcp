@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/NP-compete/gomcp/internal/constants"
 	"github.com/NP-compete/gomcp/internal/logger"
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
@@ -49,11 +50,11 @@ func LongOperationSDK(
 	}
 
 	// Validate input
-	if input.Seconds < 1 {
-		input.Seconds = 1
+	if input.Seconds < constants.MinOperationSeconds {
+		input.Seconds = constants.MinOperationSeconds
 	}
-	if input.Seconds > 60 {
-		input.Seconds = 60
+	if input.Seconds > constants.MaxOperationSeconds {
+		input.Seconds = constants.MaxOperationSeconds
 	}
 	if input.Task == "" {
 		input.Task = "long operation"
