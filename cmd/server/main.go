@@ -8,10 +8,10 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
-	"time"
 
 	"github.com/NP-compete/gomcp/internal/api"
 	"github.com/NP-compete/gomcp/internal/config"
+	"github.com/NP-compete/gomcp/internal/constants"
 	"github.com/NP-compete/gomcp/internal/logger"
 	"github.com/NP-compete/gomcp/internal/mcp"
 	"github.com/NP-compete/gomcp/internal/oauth"
@@ -111,9 +111,9 @@ func runHTTPTransport(cfg *config.Config) {
 	srv := &http.Server{
 		Addr:         addr,
 		Handler:      router,
-		ReadTimeout:  30 * time.Second,
-		WriteTimeout: 30 * time.Second,
-		IdleTimeout:  120 * time.Second,
+		ReadTimeout:  constants.DefaultReadTimeout,
+		WriteTimeout: constants.DefaultWriteTimeout,
+		IdleTimeout:  constants.DefaultIdleTimeout,
 	}
 
 	// Start server in a goroutine
@@ -143,7 +143,7 @@ func runHTTPTransport(cfg *config.Config) {
 	logger.Info("Received shutdown signal, shutting down gracefully...")
 
 	// Create shutdown context with timeout
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), constants.DefaultShutdownTimeout)
 	defer cancel()
 
 	// Shutdown HTTP server
