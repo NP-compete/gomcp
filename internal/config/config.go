@@ -8,51 +8,114 @@ import (
 	"github.com/spf13/viper"
 )
 
-// Config holds all application configuration
+// Config holds all application configuration loaded from environment variables.
 type Config struct {
 	// Server configuration
-	MCPHost              string `mapstructure:"MCP_HOST"`
-	MCPPort              int    `mapstructure:"MCP_PORT"`
-	MCPSSLKeyfile        string `mapstructure:"MCP_SSL_KEYFILE"`
-	MCPSSLCertfile       string `mapstructure:"MCP_SSL_CERTFILE"`
+
+	// MCPHost is the hostname or IP address the server binds to.
+	MCPHost string `mapstructure:"MCP_HOST"`
+
+	// MCPPort is the port number the server listens on (1024-65535).
+	MCPPort int `mapstructure:"MCP_PORT"`
+
+	// MCPSSLKeyfile is the path to the SSL private key file (optional).
+	MCPSSLKeyfile string `mapstructure:"MCP_SSL_KEYFILE"`
+
+	// MCPSSLCertfile is the path to the SSL certificate file (optional).
+	MCPSSLCertfile string `mapstructure:"MCP_SSL_CERTFILE"`
+
+	// MCPTransportProtocol specifies the transport protocol ("stdio", "streamable-http", "sse", "http").
 	MCPTransportProtocol string `mapstructure:"MCP_TRANSPORT_PROTOCOL"`
-	MCPHostEndpoint      string `mapstructure:"MCP_HOST_ENDPOINT"`
-	Environment          string `mapstructure:"ENVIRONMENT"`
+
+	// MCPHostEndpoint is the full URL endpoint of the server.
+	MCPHostEndpoint string `mapstructure:"MCP_HOST_ENDPOINT"`
+
+	// Environment specifies the deployment environment ("development", "staging", "production").
+	Environment string `mapstructure:"ENVIRONMENT"`
 
 	// Logging configuration
+
+	// LogLevel sets the logging verbosity ("DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL").
 	LogLevel string `mapstructure:"LOG_LEVEL"`
 
 	// CORS configuration
-	CORSEnabled     bool     `mapstructure:"CORS_ENABLED"`
-	CORSOrigins     []string `mapstructure:"CORS_ORIGINS"`
-	CORSCredentials bool     `mapstructure:"CORS_CREDENTIALS"`
-	CORSMethods     []string `mapstructure:"CORS_METHODS"`
-	CORSHeaders     []string `mapstructure:"CORS_HEADERS"`
+
+	// CORSEnabled controls whether CORS middleware is enabled.
+	CORSEnabled bool `mapstructure:"CORS_ENABLED"`
+
+	// CORSOrigins lists allowed origins for CORS requests.
+	CORSOrigins []string `mapstructure:"CORS_ORIGINS"`
+
+	// CORSCredentials controls whether credentials are allowed in CORS requests.
+	CORSCredentials bool `mapstructure:"CORS_CREDENTIALS"`
+
+	// CORSMethods lists allowed HTTP methods for CORS requests.
+	CORSMethods []string `mapstructure:"CORS_METHODS"`
+
+	// CORSHeaders lists allowed headers for CORS requests.
+	CORSHeaders []string `mapstructure:"CORS_HEADERS"`
 
 	// SSO/OAuth configuration
-	SSOClientID            string `mapstructure:"SSO_CLIENT_ID"`
-	SSOClientSecret        string `mapstructure:"SSO_CLIENT_SECRET"`
-	SSOCallbackURL         string `mapstructure:"SSO_CALLBACK_URL"`
-	SSOAuthorizationURL    string `mapstructure:"SSO_AUTHORIZATION_URL"`
-	SSOTokenURL            string `mapstructure:"SSO_TOKEN_URL"`
-	SSOIntrospectionURL    string `mapstructure:"SSO_INTROSPECTION_URL"`
-	SessionSecret          string `mapstructure:"SESSION_SECRET"`
-	UseExternalBrowserAuth bool   `mapstructure:"USE_EXTERNAL_BROWSER_AUTH"`
-	CompatibleWithCursor   bool   `mapstructure:"COMPATIBLE_WITH_CURSOR"`
-	CursorCompatibleSSE    bool   `mapstructure:"CURSOR_COMPATIBLE_SSE"`
-	EnableAuth             bool   `mapstructure:"ENABLE_AUTH"`
+
+	// SSOClientID is the OAuth client ID for SSO authentication.
+	SSOClientID string `mapstructure:"SSO_CLIENT_ID"`
+
+	// SSOClientSecret is the OAuth client secret for SSO authentication.
+	SSOClientSecret string `mapstructure:"SSO_CLIENT_SECRET"`
+
+	// SSOCallbackURL is the OAuth callback/redirect URL.
+	SSOCallbackURL string `mapstructure:"SSO_CALLBACK_URL"`
+
+	// SSOAuthorizationURL is the OAuth authorization endpoint.
+	SSOAuthorizationURL string `mapstructure:"SSO_AUTHORIZATION_URL"`
+
+	// SSOTokenURL is the OAuth token exchange endpoint.
+	SSOTokenURL string `mapstructure:"SSO_TOKEN_URL"`
+
+	// SSOIntrospectionURL is the OAuth token introspection endpoint.
+	SSOIntrospectionURL string `mapstructure:"SSO_INTROSPECTION_URL"`
+
+	// SessionSecret is the secret key used for session encryption.
+	SessionSecret string `mapstructure:"SESSION_SECRET"`
+
+	// UseExternalBrowserAuth enables external browser-based authentication.
+	UseExternalBrowserAuth bool `mapstructure:"USE_EXTERNAL_BROWSER_AUTH"`
+
+	// CompatibleWithCursor enables Cursor IDE compatibility mode.
+	CompatibleWithCursor bool `mapstructure:"COMPATIBLE_WITH_CURSOR"`
+
+	// CursorCompatibleSSE enables SSE streaming compatible with Cursor IDE.
+	CursorCompatibleSSE bool `mapstructure:"CURSOR_COMPATIBLE_SSE"`
+
+	// EnableAuth controls whether authentication is required.
+	EnableAuth bool `mapstructure:"ENABLE_AUTH"`
 
 	// PostgreSQL configuration
-	PostgresHost           string `mapstructure:"POSTGRES_HOST"`
-	PostgresPort           int    `mapstructure:"POSTGRES_PORT"`
-	PostgresDB             string `mapstructure:"POSTGRES_DB"`
-	PostgresUser           string `mapstructure:"POSTGRES_USER"`
-	PostgresPassword       string `mapstructure:"POSTGRES_PASSWORD"`
-	PostgresPoolSize       int    `mapstructure:"POSTGRES_POOL_SIZE"`
-	PostgresMaxConnections int    `mapstructure:"POSTGRES_MAX_CONNECTIONS"`
+
+	// PostgresHost is the PostgreSQL server hostname or IP address.
+	PostgresHost string `mapstructure:"POSTGRES_HOST"`
+
+	// PostgresPort is the PostgreSQL server port (default: 5432).
+	PostgresPort int `mapstructure:"POSTGRES_PORT"`
+
+	// PostgresDB is the name of the PostgreSQL database.
+	PostgresDB string `mapstructure:"POSTGRES_DB"`
+
+	// PostgresUser is the PostgreSQL authentication username.
+	PostgresUser string `mapstructure:"POSTGRES_USER"`
+
+	// PostgresPassword is the PostgreSQL authentication password.
+	PostgresPassword string `mapstructure:"POSTGRES_PASSWORD"`
+
+	// PostgresPoolSize is the initial number of connections in the pool.
+	PostgresPoolSize int `mapstructure:"POSTGRES_POOL_SIZE"`
+
+	// PostgresMaxConnections is the maximum number of concurrent connections.
+	PostgresMaxConnections int `mapstructure:"POSTGRES_MAX_CONNECTIONS"`
 }
 
-// Load loads configuration from environment variables
+// Load loads configuration from environment variables and optional .env file.
+// It applies default values, reads configuration, and performs validation.
 func Load() (*Config, error) {
 	v := viper.New()
 
@@ -89,6 +152,7 @@ func Load() (*Config, error) {
 	return &cfg, nil
 }
 
+// setDefaults sets default configuration values.
 func setDefaults(v *viper.Viper) {
 	// Server defaults
 	v.SetDefault("MCP_HOST", "localhost")
@@ -119,7 +183,8 @@ func setDefaults(v *viper.Viper) {
 	v.SetDefault("POSTGRES_MAX_CONNECTIONS", 20)
 }
 
-// Validate performs validation on configuration values
+// Validate performs validation on configuration values.
+// It returns an error if any configuration value is invalid.
 func (c *Config) Validate() error {
 	// Validate port range
 	if c.MCPPort < 1024 || c.MCPPort > 65535 {
@@ -183,12 +248,12 @@ func (c *Config) Validate() error {
 	return nil
 }
 
-// GetServerAddress returns the server address string
+// GetServerAddress returns the server address string in "host:port" format.
 func (c *Config) GetServerAddress() string {
 	return fmt.Sprintf("%s:%d", c.MCPHost, c.MCPPort)
 }
 
-// GetPostgresConnectionString returns the PostgreSQL connection string
+// GetPostgresConnectionString returns the PostgreSQL connection string.
 func (c *Config) GetPostgresConnectionString() string {
 	return fmt.Sprintf("postgresql://%s:%s@%s:%d/%s",
 		c.PostgresUser,
@@ -199,12 +264,13 @@ func (c *Config) GetPostgresConnectionString() string {
 	)
 }
 
-// HasSSL returns true if SSL is configured
+// HasSSL returns true if SSL is configured (both key and cert files are set).
 func (c *Config) HasSSL() bool {
 	return c.MCPSSLKeyfile != "" && c.MCPSSLCertfile != ""
 }
 
-// GetSessionSecret returns the session secret, generating one for development if needed
+// GetSessionSecret returns the session secret, generating one for development if needed.
+// In production, a secret must be explicitly configured.
 func (c *Config) GetSessionSecret() string {
 	if c.SessionSecret != "" {
 		return c.SessionSecret
@@ -218,7 +284,8 @@ func (c *Config) GetSessionSecret() string {
 	return ""
 }
 
-// generateEphemeralKey creates a temporary session secret for development
+// generateEphemeralKey creates a temporary session secret for development environments.
+// This should NEVER be used in production.
 func generateEphemeralKey() string {
 	// This is a simple implementation; in production use crypto/rand
 	return fmt.Sprintf("dev-ephemeral-key-%d", time.Now().UnixNano())
